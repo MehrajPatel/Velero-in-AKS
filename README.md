@@ -29,8 +29,8 @@ kubectl get nodes
 ```
 ## Create Storage account
 ```
-Velero_Storage_Account="testnewakstorageaditya"
-Velero_SA_blob_Container="testakscontaineraditya"
+Velero_Storage_Account="mehrajbackupsc"
+Velero_SA_blob_Container="mehrajbackupcontainer"
 az storage account create --name $Velero_Storage_Account --resource-group $Velero_Resource_Group --location $region --kind StorageV2 --sku Standard_LRS --encryption-services blob --https-only true --access-tier Hot
 az storage container create --name $Velero_SA_blob_Container --public-access off --account-name $Velero_Storage_Account
 ```
@@ -80,18 +80,18 @@ kubectl get all -n velero
 
 ### Backup
 ```
-./velero backup create newbackup
-./velero get backup
-./velero backup describe newbackup
-./velero backup logs newbackup
+velero backup create newbackup
+velero get backup
+velero backup describe newbackup
+velero backup logs newbackup
 ```
 ### Restore 
 ```
-./velero restore create --from-backup newbackup
+velero restore create --from-backup newbackup
 ```
 ### NOTE : If want to schedule a backup every 24 hrs then use below command.
 ```
-./velero create schedule nginx-test  --schedule ="@every 24h"
+velero create schedule nginx-test  --schedule ="@every 24h"
 ```
 ##### References : 
 - https://velero.io/docs/v1.7/basic-install/
